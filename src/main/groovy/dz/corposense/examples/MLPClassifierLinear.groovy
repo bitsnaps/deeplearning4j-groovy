@@ -102,14 +102,12 @@ class MLPClassifierLinear {
         int nPointsPerAxis = 100
         double[][] evalPoints = new double[nPointsPerAxis*nPointsPerAxis][2]
         int count = 0
-        for( int i=0 ; i<nPointsPerAxis; i++ ){
-            for( int j=0 ; j<nPointsPerAxis; j++ ){
+        nPointsPerAxis.each { int i ->
+            nPointsPerAxis.each { int j ->
                 double x = i * (xMax-xMin)/(nPointsPerAxis-1) + xMin
                 double y = j * (yMax-yMin)/(nPointsPerAxis-1) + yMin
-
                 evalPoints[count][0] = x
                 evalPoints[count][1] = y
-
                 count++
             }
         }

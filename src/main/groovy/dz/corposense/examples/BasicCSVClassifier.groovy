@@ -1,6 +1,7 @@
 package dz.corposense.examples
 
 import groovy.transform.CompileStatic
+import groovy.util.logging.Slf4j
 import org.apache.commons.io.IOUtils
 import org.datavec.api.records.reader.RecordReader
 import org.datavec.api.records.reader.impl.csv.CSVRecordReader
@@ -37,102 +38,95 @@ import org.slf4j.LoggerFactory
  * @author Clay Graham
  */
 @CompileStatic
+@Slf4j
 class BasicCSVClassifier {
+    
+    final static DATA_PATH = "/DataExamples/animals"
 
-    private static Logger log = LoggerFactory.getLogger(BasicCSVClassifier.class)
-
-    private static Map<Integer,String> eats = readEnumCSV("/DataExamples/animals/eats.csv")
-    private static Map<Integer,String> sounds = readEnumCSV("/DataExamples/animals/sounds.csv")
-    private static Map<Integer,String> classifiers = readEnumCSV("/DataExamples/animals/classifiers.csv")
+    static Map eats = readEnumCSV("${DATA_PATH}/eats.csv")
+    static Map sounds = readEnumCSV("${DATA_PATH}/sounds.csv")
+    static Map classifiers = readEnumCSV("${DATA_PATH}/classifiers.csv")
 
     static void main(String[] args){
 
-        try {
+        //Second: the RecordReaderDataSetIterator handles conversion to DataSet objects, ready for use in neural network
+        int labelIndex = 4     //5 values in each row of the animals.csv CSV: 4 input features followed by an integer label (class) index. Labels are the 5th value (index 4) in each row
+        int numClasses = 3     //3 classes (types of animals) in the animals data set. Classes have integer values 0, 1 or 2
 
-            //Second: the RecordReaderDataSetIterator handles conversion to DataSet objects, ready for use in neural network
-            int labelIndex = 4     //5 values in each row of the animals.csv CSV: 4 input features followed by an integer label (class) index. Labels are the 5th value (index 4) in each row
-            int numClasses = 3     //3 classes (types of animals) in the animals data set. Classes have integer values 0, 1 or 2
+        int batchSizeTraining = 30    //Iris data set: 150 examples total. We are loading all of them into one DataSet (not recommended for large data sets)
+        DataSet trainingData = readCSVDataset(
+                "${DATA_PATH}/animals_train.csv",
+                batchSizeTraining, labelIndex, numClasses)
 
-            int batchSizeTraining = 30    //Iris data set: 150 examples total. We are loading all of them into one DataSet (not recommended for large data sets)
-            DataSet trainingData = readCSVDataset(
-                    "/DataExamples/animals/animals_train.csv",
-                    batchSizeTraining, labelIndex, numClasses)
-
-            // this is the data we want to classify
-            int batchSizeTest = 44
-            DataSet testData = readCSVDataset("/DataExamples/animals/animals.csv",
-                    batchSizeTest, labelIndex, numClasses)
+        // this is the data we want to classify
+        int batchSizeTest = 44
+        DataSet testData = readCSVDataset("${DATA_PATH}/animals.csv",
+                batchSizeTest, labelIndex, numClasses)
 
 
-            // make the data model for records prior to normalization, because it
-            // changes the data.
-            Map<Integer,Map<String,Object>> animals = makeAnimalsForTesting(testData)
+        // make the data model for records prior to normalization, because it
+        // changes the data.
+        Map animals = makeAnimalsForTesting(testData)
 
 
-            //We need to normalize our data. We'll use NormalizeStandardize (which gives us mean 0, unit variance):
-            DataNormalization normalizer = new NormalizerStandardize()
-            normalizer.fit(trainingData)           //Collect the statistics (mean/stdev) from the training data. This does not modify the input data
-            normalizer.transform(trainingData)     //Apply normalization to the training data
-            normalizer.transform(testData)         //Apply normalization to the test data. This is using statistics calculated from the *training* set
+        //We need to normalize our data. We'll use NormalizeStandardize (which gives us mean 0, unit variance):
+        DataNormalization normalizer = new NormalizerStandardize()
+        normalizer.fit(trainingData)           //Collect the statistics (mean/stdev) from the training data. This does not modify the input data
+        normalizer.transform(trainingData)     //Apply normalization to the training data
+        normalizer.transform(testData)         //Apply normalization to the test data. This is using statistics calculated from the *training* set
 
-            final int numInputs = 4
-            int outputNum = 3
-            int epochs = 1000
-            long seed = 6
+        final int numInputs = 4
+        int outputNum = 3
+        int epochs = 1000
+        long seed = 6
 
-            log.info("Build model....")
-            MultiLayerConfiguration conf = new NeuralNetConfiguration.Builder()
-                    .seed(seed)
-                    .activation(Activation.TANH)
-                    .weightInit(WeightInit.XAVIER)
-                    .updater(new Sgd(0.1d))
-                    .l2(1e-4d)
-                    .list()
-                    .layer(0, new DenseLayer.Builder().nIn(numInputs).nOut(3).build())
-                    .layer(1, new DenseLayer.Builder().nIn(3).nOut(3).build())
-                    .layer(2, new OutputLayer.Builder(LossFunctions.LossFunction.NEGATIVELOGLIKELIHOOD)
-                            .activation(Activation.SOFTMAX).nIn(3).nOut(outputNum).build())
-                    .backprop(true).pretrain(false)
-                    .build()
+        log.info("Build model....")
+        MultiLayerConfiguration conf = new NeuralNetConfiguration.Builder()
+                .seed(seed)
+                .activation(Activation.TANH)
+                .weightInit(WeightInit.XAVIER)
+                .updater(new Sgd(0.1d))
+                .l2(1e-4d)
+                .list()
+                .layer(0, new DenseLayer.Builder().nIn(numInputs).nOut(3).build())
+                .layer(1, new DenseLayer.Builder().nIn(3).nOut(3).build())
+                .layer(2, new OutputLayer.Builder(LossFunctions.LossFunction.NEGATIVELOGLIKELIHOOD)
+                        .activation(Activation.SOFTMAX).nIn(3).nOut(outputNum).build())
+                .backprop(true).pretrain(false)
+                .build()
 
-            //run the model
-            MultiLayerNetwork model = new MultiLayerNetwork(conf)
-            model.init()
-            model.setListeners(new ScoreIterationListener(100))
+        //run the model
+        MultiLayerNetwork model = new MultiLayerNetwork(conf)
+        model.init()
+        model.setListeners(new ScoreIterationListener(100))
 
-            epochs.times {
-                model.fit(trainingData)
-            }
-
-            //evaluate the model on the test set
-            Evaluation eval = new Evaluation(3)
-            INDArray output = model.output(testData.getFeatures())
-
-            eval.eval(testData.getLabels(), output)
-            log.info(eval.stats())
-
-            setFittedClassifiers(output, animals)
-            logAnimals(animals)
-
-        } catch (Exception e){
-            e.printStackTrace()
+        epochs.times {
+            model.fit(trainingData)
         }
 
+        //evaluate the model on the test set
+        Evaluation eval = new Evaluation(3)
+        INDArray output = model.output(testData.getFeatures())
+
+        eval.eval(testData.getLabels(), output)
+        log.info(eval.stats())
+
+        setFittedClassifiers(output, animals)
+        logAnimals(animals)
+
     }
 
-
-
-    public static void logAnimals(Map<Integer,Map<String,Object>> animals){
-        for(Map<String,Object> a:animals.values())
+    static void logAnimals(Map animals){
+        animals.values().each { def a ->
             log.info(a.toString())
+        }
     }
 
-    public static void setFittedClassifiers(INDArray output, Map<Integer,Map<String,Object>> animals){
-        for (int i = 0; i < output.rows(); i++){
+    static void setFittedClassifiers(INDArray output, Map<Integer, Map> animals){
+        output.rows().times {
             // set the classification from the fitted results
-            animals.get(i).put("classifier",
-                    classifiers.get(maxIndex(getFloatArrayFromSlice(output.slice(i)))))
-
+            animals.get(it).put("classifier",
+                    classifiers.get(maxIndex(getFloatArrayFromSlice(output.slice(it)))))
         }
 
     }
@@ -146,12 +140,12 @@ class BasicCSVClassifier {
      * @param rowSlice
      * @return
      */
-    public static float[] getFloatArrayFromSlice(INDArray rowSlice){
+    static float[] getFloatArrayFromSlice(INDArray rowSlice){
         float[] result = new float[rowSlice.columns()]
-        for (int i = 0; i < rowSlice.columns(); i++) {
-            result[i] = rowSlice.getFloat(i)
+        rowSlice.columns().times {
+            result[it] = rowSlice.getFloat(it)
         }
-        return result
+        result
     }
 
     /**
@@ -161,15 +155,15 @@ class BasicCSVClassifier {
      * @param vals
      * @return
      */
-    public static int maxIndex(float[] vals){
+    static int maxIndex(float[] vals){
         int maxIndex = 0
-        for (int i = 1; i < vals.length; i++){
+        vals.length.times{ int i ->
             float newnumber = vals[i]
             if ((newnumber > vals[maxIndex])){
                 maxIndex = i
             }
         }
-        return maxIndex
+        maxIndex
     }
 
     /**
@@ -179,13 +173,12 @@ class BasicCSVClassifier {
      * @param testData
      * @return
      */
-    public static Map<Integer,Map<String,Object>> makeAnimalsForTesting(DataSet testData){
-        Map<Integer,Map<String,Object>> animals = new HashMap<>()
-
-        INDArray features = testData.getFeatures()
-        for (int i = 0; i < features.rows() ; i++) {
+    static Map makeAnimalsForTesting(DataSet testData){
+        Map animals = [:]
+        INDArray features = testData.features
+        features.rows().times{ int i ->
             INDArray slice = features.slice(i)
-            Map<String,Object> animal = new HashMap()
+            Map animal = [:]
 
             //set the attributes
             animal.put("yearsLived", slice.getInt(0))
@@ -195,25 +188,19 @@ class BasicCSVClassifier {
 
             animals.put(i,animal)
         }
-        return animals
+        animals
 
     }
 
 
-    public static Map<Integer,String> readEnumCSV(String csvFileClasspath) {
-        try{
-            List<String> lines = IOUtils.readLines(new ClassPathResource(csvFileClasspath).getInputStream())
-            Map<Integer,String> enums = new HashMap<>()
-            lines.each { def line ->
-                String[] parts = line.split(",")
-                enums.put(Integer.parseInt(parts[0]),parts[1])
-            }
-            return enums
-        } catch (Exception e){
-            e.printStackTrace()
-            return null
+    static Map readEnumCSV(String csvFileClasspath) {
+        List lines = IOUtils.readLines(new ClassPathResource(csvFileClasspath).getInputStream())
+        Map enums = [:]
+        lines.each { String line ->
+            String[] parts = line.split(',')
+            enums.put(parts[0].toInteger(),parts[1])
         }
-
+        enums
     }
 
     /**
@@ -228,13 +215,11 @@ class BasicCSVClassifier {
      * @throws InterruptedException
      */
     private static DataSet readCSVDataset(
-            String csvFileClasspath, int batchSize, int labelIndex, int numClasses)
-            throws IOException, InterruptedException{
-
+            String csvFileClasspath, int batchSize, int labelIndex, int numClasses){
         RecordReader rr = new CSVRecordReader()
         rr.initialize(new FileSplit(new ClassPathResource(csvFileClasspath).getFile()))
-        DataSetIterator iterator = new RecordReaderDataSetIterator(rr,batchSize,labelIndex,numClasses)
-        return iterator.next()
+        DataSetIterator iterator = new RecordReaderDataSetIterator(rr, batchSize,labelIndex,numClasses)
+        iterator.next()
     }
 
 
