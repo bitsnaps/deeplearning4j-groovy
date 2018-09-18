@@ -2,86 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bdacc46d-4bb8-4cbc-9b7f-09f9b4951736" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/3.5/taskHistory/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/3.5/taskHistory/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/3.5/taskHistory/fileSnapshots.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/3.5/taskHistory/fileSnapshots.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/3.5/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/3.5/taskHistory/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/3.5/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/3.5/taskHistory/taskHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/main/dz/corposense/examples/BasicCSVClassifier$_readEnumCSV_closure2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/main/dz/corposense/examples/BasicCSVClassifier.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/main/dz/corposense/examples/BasicCSVClassifier.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/main/dz/corposense/examples/MLPClassifierLinear.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/main/dz/corposense/examples/MLPClassifierLinear.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/DataExamples/CSVPlotData.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/DataExamples/ImagePipeline/labelA/image_0010.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/DataExamples/ImagePipeline/labelA/image_0011.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/DataExamples/ImagePipeline/labelA/image_0012.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/DataExamples/ImagePipeline/labelA/image_0013.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/DataExamples/ImagePipeline/labelA/image_0014.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/DataExamples/ImagePipeline/labelA/image_0015.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/DataExamples/ImagePipeline/labelA/image_0016.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/DataExamples/ImagePipeline/labelA/image_0017.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/DataExamples/ImagePipeline/labelA/image_0018.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/DataExamples/ImagePipeline/labelA/image_0019.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/DataExamples/ImagePipeline/labelB/image_0110.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/DataExamples/ImagePipeline/labelB/image_0111.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/DataExamples/ImagePipeline/labelB/image_0112.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/DataExamples/ImagePipeline/labelB/image_0113.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/DataExamples/ImagePipeline/labelB/image_0114.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/DataExamples/ImagePipeline/labelB/image_0115.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/DataExamples/ImagePipeline/labelB/image_0116.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/DataExamples/ImagePipeline/labelB/image_0117.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/DataExamples/ImagePipeline/labelB/image_0118.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/DataExamples/ImagePipeline/labelB/image_0119.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/DataExamples/ImagePipeline/labelC/image_0410.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/DataExamples/ImagePipeline/labelC/image_0411.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/DataExamples/ImagePipeline/labelC/image_0412.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/DataExamples/ImagePipeline/labelC/image_0413.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/DataExamples/ImagePipeline/labelC/image_0414.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/DataExamples/ImagePipeline/labelC/image_0415.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/DataExamples/ImagePipeline/labelC/image_0416.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/DataExamples/ImagePipeline/labelC/image_0417.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/DataExamples/ImagePipeline/labelC/image_0418.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/DataExamples/ImagePipeline/labelC/image_0419.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/DataExamples/MnistSVMLightExample/mnist_svmlight_test_100.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/DataExamples/MnistSVMLightExample/mnist_svmlight_train_1000.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/DataExamples/Mona_Lisa.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/groovy/dz/corposense/examples/BasicCSVClassifier.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/dz/corposense/examples/BasicCSVClassifier.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/groovy/dz/corposense/examples/MLPClassifierLinear.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/dz/corposense/examples/MLPClassifierLinear.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DataExamples/CSVPlotData.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DataExamples/ImagePipeline/labelA/image_0010.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DataExamples/ImagePipeline/labelA/image_0011.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DataExamples/ImagePipeline/labelA/image_0012.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DataExamples/ImagePipeline/labelA/image_0013.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DataExamples/ImagePipeline/labelA/image_0014.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DataExamples/ImagePipeline/labelA/image_0015.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DataExamples/ImagePipeline/labelA/image_0016.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DataExamples/ImagePipeline/labelA/image_0017.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DataExamples/ImagePipeline/labelA/image_0018.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DataExamples/ImagePipeline/labelA/image_0019.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DataExamples/ImagePipeline/labelB/image_0110.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DataExamples/ImagePipeline/labelB/image_0111.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DataExamples/ImagePipeline/labelB/image_0112.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DataExamples/ImagePipeline/labelB/image_0113.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DataExamples/ImagePipeline/labelB/image_0114.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DataExamples/ImagePipeline/labelB/image_0115.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DataExamples/ImagePipeline/labelB/image_0116.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DataExamples/ImagePipeline/labelB/image_0117.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DataExamples/ImagePipeline/labelB/image_0118.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DataExamples/ImagePipeline/labelB/image_0119.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DataExamples/ImagePipeline/labelC/image_0410.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DataExamples/ImagePipeline/labelC/image_0411.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DataExamples/ImagePipeline/labelC/image_0412.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DataExamples/ImagePipeline/labelC/image_0413.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DataExamples/ImagePipeline/labelC/image_0414.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DataExamples/ImagePipeline/labelC/image_0415.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DataExamples/ImagePipeline/labelC/image_0416.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DataExamples/ImagePipeline/labelC/image_0417.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DataExamples/ImagePipeline/labelC/image_0418.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DataExamples/ImagePipeline/labelC/image_0419.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DataExamples/MnistSVMLightExample/mnist_svmlight_test_100.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DataExamples/MnistSVMLightExample/mnist_svmlight_train_1000.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DataExamples/Mona_Lisa.png" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -114,6 +35,7 @@
           <entry key="gradle" value="2" />
           <entry key="groovy" value="9" />
           <entry key="java" value="12" />
+          <entry key="md" value="1" />
           <entry key="png" value="1" />
           <entry key="txt" value="1" />
         </counts>
@@ -124,7 +46,7 @@
           <entry key="Groovy" value="11" />
           <entry key="Image" value="1" />
           <entry key="JAVA" value="12" />
-          <entry key="PLAIN_TEXT" value="3" />
+          <entry key="PLAIN_TEXT" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -132,23 +54,34 @@
           <entry key="gradle" value="194" />
           <entry key="groovy" value="499" />
           <entry key="java" value="18" />
+          <entry key="md" value="326" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="693" />
           <entry key="JAVA" value="18" />
+          <entry key="PLAIN_TEXT" value="326" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="23" selection-start-line="23" selection-end-line="23" />
+            <state relative-caret-position="211">
+              <caret line="30" column="26" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="3" lean-forward="true" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -554,6 +487,7 @@
         <option value="$PROJECT_DIR$/src/main/groovy/dz/corposense/examples/MLPClassifierLinear.groovy" />
         <option value="$PROJECT_DIR$/src/main/groovy/dz/corposense/examples/MLPClassifierLinear2.groovy" />
         <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -643,7 +577,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1537309234047" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1537310370340" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -855,8 +789,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
+        <state relative-caret-position="211">
+          <caret line="30" column="26" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="3" lean-forward="true" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
         </state>
       </provider>
     </entry>
