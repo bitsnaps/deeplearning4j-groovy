@@ -32,3 +32,9 @@ task runBasicCSVClassifier(dependsOn: 'classes', type: JavaExec, description: 'R
     classpath = sourceSets.main.runtimeClasspath
     main = 'dz.corposense.examples.BasicCSVClassifier'
 }
+
+task runStormReportsRecordReader(dependsOn: 'classes', type: JavaExec, description: 'Run a simple CSV Classifier'){
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'dz.corposense.examples.StormReportsRecordReader'
+}
+
