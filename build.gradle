@@ -10,6 +10,8 @@ buildscript {
     }
 }
 
+//zip64 = true
+
 repositories {
     jcenter()
 }
@@ -33,8 +35,13 @@ task runBasicCSVClassifier(dependsOn: 'classes', type: JavaExec, description: 'R
     main = 'dz.corposense.examples.BasicCSVClassifier'
 }
 
-task runStormReportsRecordReader(dependsOn: 'classes', type: JavaExec, description: 'Run a simple CSV Classifier'){
+task runStormReportsRecordReader(dependsOn: 'classes', type: JavaExec, description: 'Run a Storm reports record reader generator'){
     classpath = sourceSets.main.runtimeClasspath
     main = 'dz.corposense.examples.StormReportsRecordReader'
+}
+
+task runMnistImagePipelineExample(dependsOn: 'classes', type: JavaExec, description: 'Run Image pipeline agains Mnist data set'){
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'dz.corposense.examples.MnistImagePipelineExample'
 }
 

@@ -36,8 +36,8 @@ class MLPClassifierLinear {
         int numOutputs = 2
         int numHiddenNodes = 20
 
-        final String filenameTrain  = new ClassPathResource("/classification/linear_data_train.csv").getFile().getPath()
-        final String filenameTest  = new ClassPathResource("/classification/linear_data_eval.csv").getFile().getPath()
+        final String filenameTrain  = new ClassPathResource("/classification/linear_data_train.csv").file.path
+        final String filenameTest  = new ClassPathResource("/classification/linear_data_eval.csv").file.path
 
         //Load the training data:
         RecordReader rr = new CSVRecordReader()
