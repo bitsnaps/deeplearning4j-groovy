@@ -16,6 +16,8 @@ import org.deeplearning4j.nn.conf.layers.DenseLayer
 import org.deeplearning4j.nn.conf.layers.OutputLayer
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork
 import org.deeplearning4j.nn.weights.WeightInit
+import org.deeplearning4j.optimize.listeners.ScoreIterationListener
+import org.deeplearning4j.util.ModelSerializer
 import org.nd4j.linalg.activations.Activation
 import org.nd4j.linalg.api.ndarray.INDArray
 import org.nd4j.linalg.dataset.DataSet
@@ -31,7 +33,7 @@ import org.nd4j.linalg.learning.config.Nesterovs
 class MnistImagePipelineExample {
 
     static void main(String[] args) {
-        
+
         // image information
         // 28*28 grayscale
         // grayscale implies single channel
@@ -44,10 +46,10 @@ class MnistImagePipelineExample {
         int outputNum = 10
         int numEpochs = 15
         double rate = 0.0015 // learning rate
-        
+
         // Define the File Paths
         File trainData = new ClassPathResource('/mnist_png/training/').file
-        File testData = new ClassPathResource('mnist_png/testing/').file
+        File testData = new ClassPathResource('/mnist_png/testing/').file
 
         // Define the FilePlist(PATH, ALLOWED FORMATS, random)
         FileSplit train = new FileSplit(trainData, NativeImageLoader.ALLOWED_FORMATS, randNumGen)
@@ -60,6 +62,7 @@ class MnistImagePipelineExample {
         // Initialize the record reader
         // add a listener, to extract the name
         recordReader.initialize(train)
+        // too much output
         //recordReader.setListeners(new LogRecordListener())
 
         // DataSet Iterator
@@ -82,38 +85,58 @@ class MnistImagePipelineExample {
         log.info('*** Build Model ***')
 
         MultiLayerConfiguration config = new NeuralNetConfiguration.Builder()
-            .seed(rngseed)
-            //.activation(Activation.RELU)
-            .weightInit(WeightInit.XAVIER)
-            .updater(new Nesterovs(rate, 0.98d))
-            .l2(1e-4d)
-            .list()
-            .layer(0, new DenseLayer.Builder()
+                .seed(rngseed)
+        //.activation(Activation.RELU)
+                .weightInit(WeightInit.XAVIER)
+                .updater(new Nesterovs(rate, 0.98d))
+                .l2(1e-4d)
+                .list()
+                .layer(0, new DenseLayer.Builder()
                 .nIn(height * width)
                 .nOut(100)
                 .activation(Activation.RELU)
                 .weightInit(WeightInit.XAVIER)
                 .build())
-            .layer(1, new OutputLayer.Builder()
+                .layer(1, new OutputLayer.Builder()
                 .nIn(100)
                 .nOut(outputNum)
                 .activation(Activation.SOFTMAX)
                 .weightInit(WeightInit.XAVIER)
                 .build())
-            .pretrain(false)
-            .backprop(true)
-            .setInputType(InputType.convolutional(height, width, channels))
-            .build()
+                .pretrain(false)
+                .backprop(true)
+                .setInputType(InputType.convolutional(height, width, channels))
+                .build()
 
-        MultiLayerNetwork model = new MultiLayerNetwork(config)
-        model.init()
+        MultiLayerNetwork model
 
-        log.info("*** train model ****")
+        def trained_model_file = new File("${trainData.parentFile.absolutePath}/trained_mnist_model.zip")
 
-        numEpochs.times {
-            log.info("Epoch " + it)
-            model.fit(dataIter)
+        if (trained_model_file.exists()) {
+            // Load trained model
+            log.info("*** Load trained model ***")
+            model = ModelSerializer.restoreMultiLayerNetwork(trained_model_file)
+
+        } else {
+            // Create then save a new model
+            log.info("*** Create then save trained model ***")
+
+            model = new MultiLayerNetwork(config)
+            model.init()
+
+            model.setListeners(new ScoreIterationListener(10))
+
+            log.info("*** Train model ****")
+            numEpochs.times {
+                log.info("Epoch ${it}")
+                model.fit(dataIter)
+            }
+
+            boolean saveUpdater = false
+            ModelSerializer.writeModel(model, trained_model_file, saveUpdater)
+
         }
+
 
         log.info("*** Evaluate model ****")
 
@@ -134,7 +157,8 @@ class MnistImagePipelineExample {
 
         log.info(eval.stats())
 
-        log.info("*** Finish ***")
+
+        log.info("*** Example finish ***")
 
 
     }
