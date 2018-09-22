@@ -132,11 +132,11 @@ class MnistImagePipelineExample {
                 model.fit(dataIter)
             }
 
+            // save trained model
             boolean saveUpdater = false
             ModelSerializer.writeModel(model, trained_model_file, saveUpdater)
 
         }
-
 
         log.info("*** Evaluate model ****")
 
