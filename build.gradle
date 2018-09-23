@@ -45,3 +45,7 @@ task runMnistImagePipelineExample(dependsOn: 'classes', type: JavaExec, descript
     main = 'dz.corposense.examples.MnistImagePipelineExample'
 }
 
+task runMnistImagePipelineLoader(dependsOn: 'classes', type: JavaExec, description: 'Run trained model againts loaded image'){
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'dz.corposense.examples.MnistImagePipelineLoader'
+}

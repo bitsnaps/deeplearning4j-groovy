@@ -34,3 +34,4 @@ README.md~
 *.iml
 *.prefs
 *.dylib
+.DS_Store
