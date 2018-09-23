@@ -49,3 +49,8 @@ task runMnistImagePipelineLoader(dependsOn: 'classes', type: JavaExec, descripti
     classpath = sourceSets.main.runtimeClasspath
     main = 'dz.corposense.examples.MnistImagePipelineLoader'
 }
+
+task runImportKerasConfig(dependsOn: 'classes', type: JavaExec, description: 'Import Keras iris data set model'){
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'dz.corposense.examples.ImportKerasConfig'
+}
